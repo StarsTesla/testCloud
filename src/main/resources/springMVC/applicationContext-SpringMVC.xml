@@ -3,12 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
     <!-- 扫描 各种service，controller以及各种bean-->
-    <context:component-scan base-package="fun.soops.service, fun.soops.web.controller"/>
+    <!-- @Bean @Component @Serviece @Controller @Configuration-->
+    <mvc:annotation-driven />
+    <context:component-scan base-package="fun.soops.web.controller"/>
     <!-- 视图解析：逻辑视图名，解析为具体的视图文件。例如，"login" ==> "/WEB-INF/login.jsp" -->
 
     <!-- 拦截器Interceptor, 功能上类似于Filter. 例如用户登陆校验 -->
@@ -33,6 +39,10 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp" />
+    </bean>
 
 
 

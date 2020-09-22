@@ -17,7 +17,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor  {
         HttpSession session = httpServletRequest.getSession();
         User user = SimpleSessionUtils.getLoginUser(session);
         if(null == user){
-            httpServletResponse.sendRedirect("/login.action");
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/user/login.action");
             return false;
         }else
         {
